@@ -3,7 +3,7 @@ requires = ["setuptools>=48", "setuptools_scm[toml]>=6.3.1"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "what-did-you-do-today"
+name = "dailysum"
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.11"
@@ -54,12 +54,12 @@ docs = [
 ]
 
 [project.urls]
-Documentation = "https://github.com/mozilla-ai/what-did-you-do-today"
-Issues = "https://github.com/mozilla-ai/what-did-you-do-today/issues"
-Source = "https://github.com/mozilla-ai/what-did-you-do-today"
+Documentation = "https://github.com/njbrake/dailysum"
+Issues = "https://github.com/njbrake/dailysum/issues"
+Source = "https://github.com/njbrake/dailysum"
 
 [project.scripts]
-what-did-you-do-today = "what_did_you_do_today.cli:main"
+dailysum = "dailysum.cli:main"
 
 [tool.setuptools.package-data]
 "*" = ["py.typed"]
@@ -117,7 +117,7 @@ extend-select = ["ALL"]
 strict = true
 disallow_untyped_calls = true
 disallow_untyped_defs = true
-follow_untyped_imports = true
+follow_imports = "normal"
 
 [[tool.mypy.overrides]]
 module = "tests.*"
@@ -136,10 +136,10 @@ python_functions = ["test_*"]
 
 [tool.coverage.run]
 branch = true
-source = ["src/what_did_you_do_today"]
+source = ["src/dailysum"]
 omit = [
     "tests/*",
-    "src/what_did_you_do_today/__main__.py",
+    "src/dailysum/__main__.py",
 ]
 
 [tool.coverage.report]

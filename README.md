@@ -1,9 +1,9 @@
-# What Did You Do Today?
+# DailySum
 
-[![Lint](https://github.com/mozilla-ai/what-did-you-do-today/actions/workflows/lint.yaml/badge.svg)](https://github.com/mozilla-ai/what-did-you-do-today/actions/workflows/lint.yaml)
+[![Lint](https://github.com/njbrake/dailysum/actions/workflows/lint.yaml/badge.svg)](https://github.com/njbrake/dailysum/actions/workflows/lint.yaml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
-[![PyPI](https://img.shields.io/pypi/v/what-did-you-do-today)](https://pypi.org/project/what-did-you-do-today/)
-[![codecov](https://codecov.io/gh/mozilla-ai/what-did-you-do-today/branch/main/graph/badge.svg)](https://codecov.io/gh/mozilla-ai/what-did-you-do-today)
+[![PyPI](https://img.shields.io/pypi/v/dailysum)](https://pypi.org/project/dailysum/)
+[![codecov](https://codecov.io/gh/njbrake/dailysum/branch/main/graph/badge.svg)](https://codecov.io/gh/njbrake/dailysum)
 
 A CLI tool that uses AI agents to generate daily work summaries from your GitHub activity.
 
@@ -27,10 +27,10 @@ Today:
 
 This tool uses two Mozilla AI projects:
 
-### [any-llm](https://github.com/mozilla-ai/any-llm)
+### [any-llm](https://github.com/njbrakeany-llm)
 Provides a unified interface to different LLM providers. Switch between OpenAI, Anthropic, Mistral, and other models with a string change.
 
-### [any-agent](https://github.com/mozilla-ai/any-agent)
+### [any-agent](https://github.com/njbrakeany-agent)
 Provides a unified interface for AI agent frameworks. Handles tool orchestration, model interactions, and GitHub API access via Model Context Protocol (MCP).
 
 Together, these handle the complexity of GitHub API interactions and LLM provider differences.
@@ -46,14 +46,14 @@ Together, these handle the complexity of GitHub API interactions and LLM provide
 ### Install from PyPI
 
 ```bash
-pip install what-did-you-do-today
+pip install dailysum
 ```
 
 ### Install from Source
 
 ```bash
-git clone https://github.com/mozilla-ai/what-did-you-do-today.git
-cd what-did-you-do-today
+git clone https://github.com/njbrake/dailysum.git
+cd dailysum
 pip install -e .
 ```
 
@@ -64,14 +64,14 @@ pip install -e .
 Run the initialization command and follow the prompts:
 
 ```bash
-what-did-you-do-today init
+dailysum init
 ```
 
 This will:
 - Prompt for your GitHub token
 - Let you choose your preferred LLM model
 - Optionally set your company name
-- Save configuration to `~/.config/what-did-you-do-today/config.toml`
+- Save configuration to `~/.config/dailysum/config.toml`
 
 ### Option 2: Environment Variables
 
@@ -86,7 +86,7 @@ export COMPANY="Your Company Name"     # Optional
 Then run with the `--use-env` flag:
 
 ```bash
-what-did-you-do-today generate --use-env
+dailysum generate --use-env
 ```
 
 ### Getting a GitHub Token
@@ -110,25 +110,25 @@ See [any-llm providers](https://mozilla-ai.github.io/any-llm/providers/) for the
 ### Generate Your Daily Summary
 
 ```bash
-what-did-you-do-today generate
+dailysum generate
 ```
 
 ### Generate with Quality Evaluation
 
 ```bash
-what-did-you-do-today generate --evaluate
+dailysum generate --evaluate
 ```
 
 ### View Current Configuration
 
 ```bash
-what-did-you-do-today config
+dailysum config
 ```
 
 ### Use Environment Variables Instead of Config File
 
 ```bash
-what-did-you-do-today generate --use-env
+dailysum generate --use-env
 ```
 
 ## Advanced Usage
@@ -137,10 +137,10 @@ what-did-you-do-today generate --use-env
 
 ```bash
 # Initialize with custom location
-what-did-you-do-today init --config-path /path/to/my/config.toml
+dailysum init --config-path /path/to/my/config.toml
 
 # Generate using custom location
-what-did-you-do-today generate --config-path /path/to/my/config.toml
+dailysum generate --config-path /path/to/my/config.toml
 ```
 
 ### Different Models for Different Purposes
@@ -149,10 +149,10 @@ You can easily switch between models by updating your config:
 
 ```bash
 # Use a faster, cheaper model
-what-did-you-do-today init --model-id "openai/gpt-4o-mini"
+dailysum init --model-id "openai/gpt-4o-mini"
 
 # Use a more powerful model for complex summaries
-what-did-you-do-today init --model-id "anthropic/claude-3-5-sonnet-20241022"
+dailysum init --model-id "anthropic/claude-3-5-sonnet-20241022"
 ```
 
 ## Development
@@ -160,8 +160,8 @@ what-did-you-do-today init --model-id "anthropic/claude-3-5-sonnet-20241022"
 ### Setting Up Development Environment
 
 ```bash
-git clone https://github.com/mozilla-ai/what-did-you-do-today.git
-cd what-did-you-do-today
+git clone https://github.com/njbrake/dailysum.git
+cd dailysum
 
 # Install with development dependencies
 pip install -e ".[dev]"
@@ -223,7 +223,7 @@ See [Contributing Guide](CONTRIBUTING.md) for details.
 ### "Configuration error: GitHub token not found"
 
 Make sure you've either:
-- Run `what-did-you-do-today init` to set up a config file, or
+- Run `dailysum init` to set up a config file, or
 - Set the `GITHUB_TOKEN` environment variable
 
 ### "Unable to import 'any_agent'"
@@ -246,8 +246,8 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## Acknowledgments
 
-- [any-llm](https://github.com/mozilla-ai/any-llm) - Unified LLM provider interface
-- [any-agent](https://github.com/mozilla-ai/any-agent) - Unified AI agent framework
+- [any-llm](https://github.com/njbrakeany-llm) - Unified LLM provider interface
+- [any-agent](https://github.com/njbrakeany-agent) - Unified AI agent framework
 - [GitHub Copilot MCP](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-your-ide) - GitHub API access via Model Context Protocol
 - [Rich](https://github.com/Textualize/rich) - Beautiful terminal output
 - [Click](https://click.palletsprojects.com/) - Command-line interface framework

@@ -1,9 +1,8 @@
-"""Command-line interface for What Did You Do Today."""
+"""Command-line interface for DailySum."""
 
 import asyncio
 import sys
 from pathlib import Path
-from typing import Optional
 
 import click
 from rich.console import Console
@@ -18,13 +17,12 @@ console = Console()
 
 @click.group()
 @click.version_option(version="0.1.0")
-def cli():
-    """What Did You Do Today - Generate daily work summaries from GitHub activity.
+def cli() -> None:
+    """Generate daily work summaries from GitHub activity.
 
     This tool uses AI agents powered by any-llm and any-agent to analyze your
     GitHub activity and generate professional daily status updates.
     """
-    pass
 
 
 @cli.command()
@@ -36,19 +34,17 @@ def cli():
 @click.option(
     "--config-path",
     type=click.Path(path_type=Path),
-    help="Path to save config file (default: ~/.config/what-did-you-do-today/config.toml)",
+    help="Path to save config file (default: ~/.config/dailysum/config.toml)",
 )
-def init(github_token: str, model_id: str, company: Optional[str], config_path: Optional[Path]):
-    """Initialize configuration for What Did You Do Today."""
+def init(github_token: str, model_id: str, company: str | None, config_path: Path | None) -> None:
+    """Initialize configuration for DailySum."""
     config = Config(github_token=github_token, model_id=model_id, company=company)
 
     try:
         config.save_to_file(config_path)
-        config_file_path = config_path or Path.home() / ".config" / "what-did-you-do-today" / "config.toml"
+        config_file_path = config_path or Path.home() / ".config" / "dailysum" / "config.toml"
         console.print(f"✅ Configuration saved to {config_file_path}", style="green")
-        console.print(
-            "\n💡 You can now run 'what-did-you-do-today generate' to create your daily summary!", style="blue"
-        )
+        console.print("\n💡 You can now run 'dailysum generate' to create your daily summary!", style="blue")
     except Exception as e:
         console.print(f"❌ Error saving configuration: {e}", style="red")
         sys.exit(1)
@@ -58,13 +54,12 @@ def init(github_token: str, model_id: str, company: Optional[str], config_path: 
 @click.option(
     "--config-path",
     type=click.Path(path_type=Path),
-    help="Path to config file (default: ~/.config/what-did-you-do-today/config.toml)",
+    help="Path to config file (default: ~/.config/dailysum/config.toml)",
 )
 @click.option("--use-env", is_flag=True, help="Use environment variables instead of config file")
 @click.option("--evaluate", is_flag=True, help="Evaluate the generated summary for quality")
-def generate(config_path: Optional[Path], use_env: bool, evaluate: bool):
+def generate(config_path: Path | None, use_env: bool, evaluate: bool) -> None:
     """Generate a daily work summary from your GitHub activity."""
-
     try:
         if use_env:
             config = Config.from_env()
@@ -72,10 +67,10 @@ def generate(config_path: Optional[Path], use_env: bool, evaluate: bool):
             config = Config.from_file(config_path)
     except (FileNotFoundError, ValueError) as e:
         console.print(f"❌ Configuration error: {e}", style="red")
-        console.print("💡 Run 'what-did-you-do-today init' to set up your configuration.", style="blue")
+        console.print("💡 Run 'dailysum init' to set up your configuration.", style="blue")
         sys.exit(1)
 
-    async def _generate():
+    async def _generate() -> None:
         summarizer = GitHubSummarizer(config)
 
         try:
@@ -110,11 +105,11 @@ def generate(config_path: Optional[Path], use_env: bool, evaluate: bool):
 
 @cli.command()
 @click.option("--config-path", type=click.Path(path_type=Path), help="Path to config file to display")
-def config(config_path: Optional[Path]):
+def config(config_path: Path | None) -> None:
     """Display current configuration."""
     try:
         config = Config.from_file(config_path)
-        config_file_path = config_path or Path.home() / ".config" / "what-did-you-do-today" / "config.toml"
+        config_file_path = config_path or Path.home() / ".config" / "dailysum" / "config.toml"
 
         console.print(f"\n📁 Configuration from: {config_file_path}")
         console.print(
@@ -131,8 +126,8 @@ def config(config_path: Optional[Path]):
         sys.exit(1)
 
 
-def main():
-    """Main entry point for the CLI."""
+def main() -> None:
+    """Run the CLI application."""
     cli()
 
 

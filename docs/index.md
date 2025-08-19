@@ -1,12 +1,12 @@
-# What Did You Do Today?
+# DailySum
 
 A CLI tool that uses AI agents to generate daily work summaries from your GitHub activity.
 
 ## Quick Start
 
-1. Install: `pip install what-did-you-do-today`
-2. Configure: `what-did-you-do-today init`
-3. Generate: `what-did-you-do-today generate`
+1. Install: `pip install dailysum`
+2. Configure: `dailysum init`
+3. Generate: `dailysum generate`
 
 ## Features
 
@@ -20,7 +20,7 @@ A CLI tool that uses AI agents to generate daily work summaries from your GitHub
 
 Uses two Mozilla AI projects:
 
-- **[any-llm](https://github.com/mozilla-ai/any-llm)**: Unified interface to different LLM providers
-- **[any-agent](https://github.com/mozilla-ai/any-agent)**: Unified interface for AI agent frameworks
+- **[any-llm](https://github.com/njbrakeany-llm)**: Unified interface to different LLM providers
+- **[any-agent](https://github.com/njbrakeany-agent)**: Unified interface for AI agent frameworks
 
 This handles the complexity of GitHub API interactions and LLM provider differences.
