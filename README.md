@@ -5,7 +5,7 @@
 [![PyPI](https://img.shields.io/pypi/v/dailysum)](https://pypi.org/project/dailysum/)
 [![codecov](https://codecov.io/gh/njbrake/dailysum/branch/main/graph/badge.svg)](https://codecov.io/gh/njbrake/dailysum)
 
-A CLI tool that uses AI agents to generate daily work summaries from your GitHub activity.
+A simple CLI tool that uses AI agents to generate daily work summaries from your GitHub activity.
 
 ## What It Does
 
@@ -25,15 +25,7 @@ Today:
 
 ## How It Works
 
-This tool uses two Mozilla AI projects:
-
-### [any-llm](https://github.com/njbrakeany-llm)
-Provides a unified interface to different LLM providers. Switch between OpenAI, Anthropic, Mistral, and other models with a string change.
-
-### [any-agent](https://github.com/njbrakeany-agent)
-Provides a unified interface for AI agent frameworks. Handles tool orchestration, model interactions, and GitHub API access via Model Context Protocol (MCP).
-
-Together, these handle the complexity of GitHub API interactions and LLM provider differences.
+Uses a simple agent powered by Mozilla AI's [any-agent](https://github.com/njbrake/any-agent) framework with [any-llm](https://github.com/njbrake/any-llm) for LLM provider abstraction. The agent connects to GitHub via Model Context Protocol (MCP) to analyze your activity and generate summaries.
 
 ## Installation
 
@@ -111,12 +103,6 @@ See [any-llm providers](https://mozilla-ai.github.io/any-llm/providers/) for the
 
 ```bash
 dailysum generate
-```
-
-### Generate with Quality Evaluation
-
-```bash
-dailysum generate --evaluate
 ```
 
 ### View Current Configuration
@@ -230,7 +216,7 @@ Make sure you've either:
 
 Install the required dependencies:
 ```bash
-pip install any-agent any-llm-sdk
+pip install any-agent any-llm
 ```
 
 ### Rate Limiting Issues
@@ -246,8 +232,8 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## Acknowledgments
 
-- [any-llm](https://github.com/njbrakeany-llm) - Unified LLM provider interface
-- [any-agent](https://github.com/njbrakeany-agent) - Unified AI agent framework
+- [any-llm](https://github.com/njbrake/any-llm) - Unified LLM provider interface
+- [any-agent](https://github.com/njbrake/any-agent) - Unified AI agent framework
 - [GitHub Copilot MCP](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-your-ide) - GitHub API access via Model Context Protocol
 - [Rich](https://github.com/Textualize/rich) - Beautiful terminal output
 - [Click](https://click.palletsprojects.com/) - Command-line interface framework

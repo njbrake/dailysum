@@ -1,6 +1,6 @@
 # DailySum
 
-A CLI tool that uses AI agents to generate daily work summaries from your GitHub activity.
+A simple CLI tool that uses AI agents to generate daily work summaries from your GitHub activity.
 
 ## Quick Start
 
@@ -10,17 +10,12 @@ A CLI tool that uses AI agents to generate daily work summaries from your GitHub
 
 ## Features
 
-- Uses language models to create summaries from GitHub activity
-- Simple configuration with GitHub token
+- Simple agent-based approach for generating daily summaries
+- Easy configuration with GitHub token
 - Analyzes PRs, issues, commits, and reviews
 - Supports multiple LLM providers (OpenAI, Anthropic, Mistral, Google, etc.)
 - Powered by Mozilla AI's any-agent framework
 
 ## How It Works
 
-Uses two Mozilla AI projects:
-
-- **[any-llm](https://github.com/njbrakeany-llm)**: Unified interface to different LLM providers
-- **[any-agent](https://github.com/njbrakeany-agent)**: Unified interface for AI agent frameworks
-
-This handles the complexity of GitHub API interactions and LLM provider differences.
+Uses a simple agent powered by Mozilla AI's [any-agent](https://github.com/njbrake/any-agent) framework with [any-llm](https://github.com/njbrake/any-llm) for LLM provider abstraction. The agent connects to GitHub via Model Context Protocol (MCP) to analyze your activity and generate summaries.
